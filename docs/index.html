@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>IoPT Datalake Checker</title>
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+  <link href="css/jsonview.bundle.css" rel="stylesheet" type="text/css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="main">
+<!-- https://github.com/ubi-naist/iopt-datalake-checker -->
+<header>
+  <h1>BLE人流センサー稼働状況 ＠ 佐賀市スマート街なかプロジェクト</h1>
+</header>
+<section>
+  <div class="json-viewer" :class="{'is-loading': isLoading, 'is-loaded': isLoaded}">
+    <h2>
+      <span :class="{'active': isDashboardMode}" @click="changeMode('dashboard')">Dashboard</span>
+      <span :class="{'active': isSummaryMode}" @click="changeMode('summary')">Summary</span>
+      <span :class="{'active': isDetailedMode}" id="result-detailed" @click="changeMode('detailed')">JSON Viewer</span>
+    </h2>
+    <div class="loading">Loading...</div>
+    <div id="dashboard" class="dashboard" :class="{'active': isDashboardMode}">
+      <div class="dashboard-content">
+        <ul v-if="isLoaded">
+          <li v-for="(device, i) in targetSensorIDs"
+              :class="{'active': device.installed, 'error': !(i+1 in sensorStatus)}">
+            <span class="sensor-id">{{ getSensorID(i) }}</span>
+            <h3>{{ device.name }}</h3>
+            <div v-if="i+1 in sensorStatus">
+              <time>{{ sensorStatus[i+1].t }}</time>
+              <span>{{ sensorStatus[i+1].records }} records</span>
+              <span>{{ sensorStatus[i+1].filesize }} MB</span>
+            </div>
+            <div v-else-if="device.installed">
+              ERROR!!
+            </div>
+            <div v-else>
+              未設置
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id="data-summary" class="data-summary" :class="{'active': isSummaryMode}">
+      <div class="summary">
+        <dl>
+          <dt>sensor_ids</dt><dd id="sensor-ids"></dd>
+        </dl>
+      </div>
+      <table>
+        <thead><tr><th>#</th><th>sensor_id</th><th>datetime</th><th>records</th><th>filesize</th></tr></thead>
+        <tbody id="summary-table"></tbody>
+      </table>
+    </div>
+    <div id="json-view" class="json-preview" :class="{'active': isDetailedMode}"></div>
+  </div>
+</section>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="js/jsonview.bundle.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
