@@ -36,6 +36,12 @@ section {
     border: 1px solid gray;
     border-radius: 5px;
     height: calc(100vh - 90px);
+    div.target-period {
+      float: right;
+      padding: 10px;
+      line-height: 1.3rem;
+    }
+    &:not(.is-loaded) div.target-period { display:  none; }
     h2 {
       span {
         display: inline-block;

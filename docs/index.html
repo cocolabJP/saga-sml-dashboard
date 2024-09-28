@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>IoPT Datalake Checker</title>
+  <title>佐賀市BLEスキャナ稼働状況</title>
   <link href="css/style.css" rel="stylesheet" type="text/css">
   <link href="css/jsonview.bundle.css" rel="stylesheet" type="text/css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js" type="text/javascript"></script>
@@ -15,6 +15,7 @@
 </header>
 <section>
   <div class="json-viewer" :class="{'is-loading': isLoading, 'is-loaded': isLoaded}">
+    <div class="target-period">{{ targetPeriod }}</div>
     <h2>
       <span :class="{'active': isDashboardMode}" @click="changeMode('dashboard')">Dashboard</span>
       <span :class="{'active': isSummaryMode}" @click="changeMode('summary')">Summary</span>
@@ -37,7 +38,7 @@
               ERROR!!
             </div>
             <div v-else>
-              未設置
+              監視対象外
             </div>
           </li>
         </ul>
