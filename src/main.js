@@ -27,14 +27,14 @@ const TARGET_SENSOR_IDS = [
   {installed: true,  name: "佐賀駅バスセンター（構内）"}, // 22
   {installed: false,  name: "駅前中央通り①（ニッポンレンタカー前）"}, // 23
   {installed: true,  name: "かど屋佐賀駅北口店"}, // 24
-  {installed: true,  name: "ROUGH cafe&dining bar"}, // 25
+  {installed: false,  name: "ROUGH cafe&dining bar(旧)"}, // 25
   {installed: true,  name: "まちかど広場（サイネージ）"}, // 26
   {installed: true,  name: "もしもしかめさん"}, // 27
   {installed: true,  name: "ANZee."}, // 28
   {installed: false,  name: "SAGAアリーナ"}, // 29
   {installed: false,  name: "駅前中央通り③（三井住友銀行前）"}, // 30
   {installed: false, name: ""}, // 31
-  {installed: false, name: ""}, // 32
+  {installed: true, name: "ROUGH cafe&dining bar"}, // 32
   {installed: false, name: ""}, // 33
   {installed: false, name: ""}, // 34
   {installed: false, name: ""}, // 35
